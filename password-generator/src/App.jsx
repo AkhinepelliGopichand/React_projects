@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from 'react'
+import { useEffect, useState, useRef, useCallback } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
@@ -16,7 +16,7 @@ function App() {
   }, [length,isNumeric,isSpecialChar]);
 
 
-  let passwordGenerator = ()=>{
+  let passwordGenerator = useCallback(()=>{
     // console.log("Password length ==>",length);
     let str = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
     if(isNumeric) str +="1234567890"
@@ -28,12 +28,12 @@ function App() {
     }
     // console.log(pass, pass.length);
     setPassword(pass);
-  }
+  },[length,isNumeric,isSpecialChar]);
 
-  let copyPass = () =>{
+  let copyPass = useCallback(() =>{
     window.navigator?.clipboard?.writeText(password);
     passRef?.current.select();
-  }
+  },[password]) 
 
 
   
