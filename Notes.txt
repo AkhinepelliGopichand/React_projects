@@ -1,0 +1,14 @@
+
+React Hooks
+    1. useEffect(CB,dep[]) ==> Takes two parameters setup and dependencies? array.  The function with your Effect’s logic. Your setup function may also optionally return a cleanup function. When your component is added to the DOM, React will run your setup function. After every re-render with changed dependencies, React will first run the cleanup function (if you provided it) with the old values, and then run your setup function with the new values. After your component is removed from the DOM, React will run your cleanup function.
+        What if dependencies array is:
+            a. Empty --> Executes your effect CB only once after initial render and dont works on re-renders.
+            b. With deps --> Executes everytime if any of dependencies changes.     
+            c. Not passed at all --> Executes on initial render and every re-render. (If CB updates stae then will go to infy loop in this case)
+
+    2. useCallback(fn,dep[]) ==> Takes a function and returns the same fn. Used to cache the function between multiple renders. Need to pass all variables used inside fn def in an array. If any of the values passed in an array changes at the time of re render it again creates rhe function and give it back. Actually every time JS sees fn(){} or ()=>{} it creates it again and the new one is diff from prev one.
+         When to use ? If you pass any fn as a param to other component, So every time parent comp renders the param fn is created and the child comp re renders which may slows down the app. So using usecallback will not change param fn and therfore child comp wont re renders again.
+    
+    
+
+
