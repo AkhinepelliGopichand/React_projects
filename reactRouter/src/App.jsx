@@ -7,6 +7,7 @@ import Home from './components/Home/Home';
 import Contact from './components/Contact/Contact';
 import Github, { getUserData } from './components/Github/Github';
 import Error from './components/Error';
+import User from './components/User/User';
 
 function App() {
 
@@ -16,7 +17,9 @@ function App() {
         <Route path="" element={<Home />}  />
         <Route path='about' element={<About />} />
         <Route path='contact' element={<Contact />} />
-        <Route path='github?/:id' element={<Github />} loader={getUserData} />
+        <Route path='github' element={<Github />} loader={getUserData} > 
+          <Route path=":username" element={<User />} />
+        </Route>
       </Route>
     )
   );

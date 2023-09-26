@@ -1,6 +1,6 @@
 import React from 'react'
 import { useParams, useLoaderData } from 'react-router-dom'
-var user_name;
+import { Outlet } from 'react-router-dom';
 function Github() {
     const userData = useLoaderData();
     const {id} = useParams();
@@ -8,10 +8,15 @@ function Github() {
 
     console.log(id);
   return (
-   <div className="bg-cyan-500 text-center flex justify-between align-middle">
-    <img width={200} className='m-4 p-4' src={userData.avatar_url} alt="" />
-    <p className='flex-1'>{userData.login} : {userData.followers}</p> 
-   </div>
+    <>
+        <div className="bg-cyan-500 text-center flex justify-between align-middle">
+        <img width={200} className='m-4 p-4' src={userData.avatar_url} alt="" />
+        <p className='flex-1'>{userData.login} : {userData.followers}</p> 
+        </div>
+        <Outlet />
+    </>
+   
+
   )
 }
 
